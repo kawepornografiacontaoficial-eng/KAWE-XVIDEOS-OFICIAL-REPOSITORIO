@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>KAWE - Changelog Oficial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --green: #00ff88;
+            --dark: #0b0f0c;
+            --black: #000;
+            --box: #111;
+            --text: #e0ffe8;
+            --muted: #9ccfb2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* INTRO STYLES */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .intro-text {
+            font-size: 3rem;
+            color: var(--green);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--green);
+        }
+
+        .skip-msg {
+            position: absolute;
+            bottom: 50px;
+            color: var(--green);
+            font-size: 1rem;
+            animation: blink 1.5s infinite;
+            cursor: pointer;
+        }
+
+        .intro-logos {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .intro-logos i {
+            font-size: 2.5rem;
+            color: var(--green);
+            transition: transform 0.3s;
+        }
+
+        .intro-logos i:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* HEADER & MENU */
+        header {
+            background: linear-gradient(90deg, #00ff88, #007744);
+            color: black;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        /* CATEGORIES */
+        .nav-categories {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-categories a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-categories a:hover {
+            color: white;
+        }
+
+        /* HAMBURGER MENU */
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 101;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background: var(--black);
+            border-left: 2px solid var(--green);
+            padding-top: 80px;
+            transition: right 0.3s ease;
+            z-index: 99;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 25px;
+            color: var(--green);
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .side-menu a:hover {
+            background: #111;
+        }
+
+        /* CONTENT CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .version {
+            background: var(--box);
+            border-left: 5px solid var(--green);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+        }
+
+        .version h2 {
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+
+        .date {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            margin-top: 15px;
+            color: var(--green);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        footer {
+            background: var(--black);
+            color: var(--green);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--green);
+        }
+
+        /* MOBILE ADJUSTMENTS */
+        @media (max-width: 600px) {
+            .nav-categories {
+                display: none; /* Hide categories on mobile, use menu */
+            }
+            .intro-text {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- INTRO 1 -->
+    <div id="intro1" class="intro-screen">
+        <div class="intro-text">KAWE DESENVOLVEDOR</div>
+        <div class="intro-logos">
+            <i class="fab fa-discord"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="skip-msg">Pressione qualquer tecla para pular</div>
+    </div>
+
+    <!-- INTRO 2 -->
+    <div id="intro2" class="intro-screen hidden">
+        <div class="intro-text">KAWE CHANGELOG OFICIAL</div>
+        <div class="intro-logos">
+            <i class="fab fa-discord"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="skip-msg">Pressione qualquer tecla para pular</div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-categories">
+            <a href="#">Início</a>
+            <a href="#">Sobre nós</a>
+        </div>
+        
+        <div class="header-title">
+            <h1>📄 Changelog</h1>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- SIDE MENU -->
+    <div class="side-menu" id="sideMenu">
+        <a href="#">Início</a>
+        <a href="#">Sobre nós</a>
+        <a href="#">Projetos</a>
+        <a href="#">Contato</a>
+    </div>
+
+    <div class="container">
+        <!-- Original Content -->
+        <div class="version">
+            <h2>Versão 1.0.0</h2>
+            <div class="date">📅 09/02/2026</div>
+            <h3>🎉 Lançamento Inicial</h3>
+            <ul>
+                <li>Criação do projeto base</li>
+                <li>Tema verde e preto implementado</li>
+                <li>Layout responsivo</li>
+                <li>Estrutura inicial do site</li>
+            </ul>
+        </div>
+
+        <div class="version">
+            <h2>Versão 1.1.0</h2>
+            <div class="date">📅 15/02/2026</div>
+            <h3>✨ Melhorias</h3>
+            <ul>
+                <li>Melhoria no design visual</li>
+                <li>Melhor contraste de textos</li>
+                <li>Otimização do código CSS</li>
+            </ul>
+            <h3>🐛 Correções</h3>
+            <ul>
+                <li>Ajustes de espaçamento</li>
+                <li>Correções em telas pequenas</li>
+            </ul>
+        </div>
+
+        <div class="version">
+            <h2>Versão 1.2.0</h2>
+            <div class="date">📅 20/02/2026</div>
+            <h3>📝 Conteúdo</h3>
+            <ul>
+                <li>Modelo padrão de posts</li>
+                <li>Organização por data</li>
+                <li>Destaque para posts recentes</li>
+            </ul>
+        </div>
+
+        <div class="version">
+            <h2>Versão 2.0.0</h2>
+            <div class="date">🚀 Futuro</div>
+            <h3>🔥 Grande Atualização</h3>
+            <ul>
+                <li>Sistema dinâmico</li>
+                <li>Painel administrativo</li>
+                <li>Login de administrador</li>
+                <li>Banco de dados</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 • KAWE • Changelog Oficial</p>
+    </footer>
+
+    <script>
+        const intro1 = document.getElementById('intro1');
+        const intro2 = document.getElementById('intro2');
+        const menuToggle = document.getElementById('menuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+
+        // Intro Logic
+        function skipIntros() {
+            intro1.classList.add('fade-out');
+            intro2.classList.add('fade-out');
+            setTimeout(() => {
+                intro1.classList.add('hidden');
+                intro2.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 1000);
+        }
+
+        // Auto transition intros
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            if (!intro1.classList.contains('fade-out')) {
+                intro1.classList.add('fade-out');
+                setTimeout(() => {
+                    intro1.classList.add('hidden');
+                    intro2.classList.remove('hidden');
+                    setTimeout(() => {
+                        if (!intro2.classList.contains('fade-out')) {
+                            skipIntros();
+                        }
+                    }, 3000);
+                }, 1000);
+            }
+        }, 3000);
+
+        // Key press to skip
+        window.addEventListener('keydown', skipIntros);
+        window.addEventListener('mousedown', skipIntros);
+
+        // Menu Logic
+        menuToggle.addEventListener('click', () => {
+            sideMenu.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (sideMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                sideMenu.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            }
+        });
+    </script>
+</body>
+</html>
